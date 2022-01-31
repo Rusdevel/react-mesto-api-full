@@ -1,0 +1,13 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media (min-width:1050px) {
+   .profile {
+    flex-direction: row;
+    
+}
+}

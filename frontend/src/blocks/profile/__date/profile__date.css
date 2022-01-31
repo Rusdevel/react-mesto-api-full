@@ -1,0 +1,14 @@
+.profile__date {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding-top: 22.25px;
+}
+
+@media (min-width: 1050px) {
+    .profile__date {
+        margin-left: 36px;
+        
+    }
+
+}

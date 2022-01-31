@@ -1,0 +1,18 @@
+.popup__content {
+  width: 282px;
+  min-height: 181px;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 25px 22px;
+  text-align: center;
+}
+
+@media (min-width: 1000px) {
+  .popup__content {
+    width: 430px;
+    min-height: 181px;
+    padding: 30px 36px;
+  }
+}

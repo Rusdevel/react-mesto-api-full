@@ -1,0 +1,23 @@
+.profile__button {
+    position: relative;
+    bottom: 20px;
+    left: 195px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #FFFFFF;
+    background-image: url(../../../images/Karandash-image.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media (min-width: 1050px) {
+    .profile__button {
+        width: 24px;
+        height: 24px;
+        bottom: 35px;
+        left: 300px;
+
+        
+    }
+
+}

@@ -1,0 +1,11 @@
+.section {
+    margin: 0 19px;
+}
+
+@media (min-width: 1050px) {
+    .section {
+        width: calc(100% - 200px*2);
+        margin: 0 auto;
+    }
+       
+}

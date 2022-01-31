@@ -1,0 +1,15 @@
+.popup_open {
+        visibility: visible;
+        opacity: 1;
+}
+
+
+@media (min-width: 1050px) {
+        .popup_open {
+                visibility: visible;
+                
+        }
+        .popup_open:hover {
+                opacity: 1;     
+        }
+}

@@ -1,0 +1,14 @@
+.places-list {
+    padding-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 282px);
+    gap: 20px 17px;
+    justify-content: center;
+}
+
+@media(min-width: 1040px) {
+    .places-list {
+        grid-template-columns: repeat(3, 282px);
+        padding-top: 48px;
+    }
+}

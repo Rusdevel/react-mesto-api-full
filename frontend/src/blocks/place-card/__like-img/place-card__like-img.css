@@ -1,0 +1,15 @@
+.place-card__like-img {
+    cursor: pointer;
+    height: 19px;
+    width: 23.5px;
+    background-image: url(../../../images/like.svg);
+    background-color: white;
+    border: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 0.5s;
+}
+
+.place-card__like-img:hover {
+    opacity: 0.5;
+}

@@ -1,0 +1,17 @@
+.login__link {
+    align-self: center;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 20px;
+}
+
+@media screen and (min-width: 1024px) {
+    .login__link {
+        margin-top: 15px;
+    }
+  }

@@ -1,0 +1,19 @@
+.place-card__trash {
+background-image: url(../../../images/trash.svg);
+  position: absolute;
+  width: 18px;
+  height: 19px;
+  top: 15px;
+  right: 20px;
+  background-position: center;
+  border: none;
+  cursor:pointer;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  transition: opacity 0.9s;
+  visibility: hidden;
+}
+
+.place-card__trash:hover {
+  opacity: 0.5;
+}

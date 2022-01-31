@@ -1,0 +1,7 @@
+.place-card__like-section {
+    display: flex;
+    flex-direction: column;
+    width: 22px;
+    height: 35px;
+    margin-top: 0;
+}
