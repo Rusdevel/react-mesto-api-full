@@ -1,3 +1,5 @@
+/*
+
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
   'https://praktikum.tk',
@@ -26,3 +28,4 @@ module.exports = (req, res, next) => {
   }
   next();
 };
+*/

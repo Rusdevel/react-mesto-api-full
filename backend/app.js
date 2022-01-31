@@ -4,19 +4,22 @@ const cookieParser = require('cookie-parser');
 // const path = require('path');
 const bodyParser = require('body-parser');
 const { errors, celebrate, Joi } = require('celebrate');
+const cors = require('cors');
 const { createUser, login } = require('./controllers/users');
 const usersRoute = require('./routes/users');
 const cardsRoute = require('./routes/cards');
 const NotFoundError = require('./errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const auth = require('./middlewares/auth');
-const cors = require('./middlewares/cors');
+// const cors = require('./middlewares/cors');
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
 const app = express();
-app.use(cors);
+
 // подключаемся к серверу mongo
 mongoose.connect('mongodb://localhost:27017/mestodb');
+app.use(cors());
+app.options('*', cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(requestLogger); // подключаем логгер запросов
@@ -38,7 +41,6 @@ app.post('/signup', celebrate({
 }), createUser);
 // авторизация
 app.use(auth);
-app.use(cors);
 app.use('/', usersRoute);
 app.use('/', cardsRoute);
 
