@@ -6,6 +6,8 @@ const ConflictEmailError = require('../errors/ConflictEmailError');
 const NotFoundError = require('../errors/NotFoundError');
 const RequestError = require('../errors/RequestError');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const getUsersInfo = (req, res, next) => User.find({})
   .then((users) => {
     res.status(200).send(users);
@@ -113,7 +115,7 @@ const login = (req, res, next) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       // создадим токен
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'super-strong-secret', { expiresIn: '7d' });
       // отправим токен, браузер сохранит его в куках
       res.cookie('jwt', token, {
       // token - наш JWT токен, который мы отправляем

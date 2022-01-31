@@ -11,7 +11,6 @@ class Api {
         'Content-type': 'application/json',
         Authorization: `Bearer ${token}`
     },
-      Authorization: `Bearer ${token}`
     }).then(this._checkRes);
   }
 
@@ -23,7 +22,6 @@ class Api {
         'Content-type': 'application/json',
         Authorization: `Bearer ${token}`
     },
-      Authorization: `Bearer ${token}`
     }).then(this._checkRes);
   }
 
@@ -36,7 +34,6 @@ class Api {
         'Content-type': 'application/json',
         Authorization: `Bearer ${token}`
     },
-      Authorization: `Bearer ${token}`,
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -52,7 +49,6 @@ class Api {
         'Content-type': 'application/json',
         Authorization: `Bearer ${token}`
     },
-      Authorization: `Bearer ${token}`,
       body: JSON.stringify({
         avatar: link.avatar,
       }),
@@ -67,7 +63,6 @@ class Api {
         'Content-type': 'application/json',
         Authorization: `Bearer ${token}`
     },
-      Authorization: `Bearer ${token}`,
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -84,7 +79,6 @@ class Api {
         'Content-type': 'application/json',
         Authorization: `Bearer ${token}`
     },
-      Authorization: `Bearer ${token}`,
     }).then(this._checkRes);
   }
   //настройка лайка
@@ -96,7 +90,6 @@ class Api {
         'Content-type': 'application/json',
         Authorization: `Bearer ${token}`
     },
-      Authorization: `Bearer ${token}`
     }).then(this._checkRes);
   }
 

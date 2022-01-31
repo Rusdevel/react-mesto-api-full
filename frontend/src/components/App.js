@@ -215,14 +215,14 @@ React.useEffect(() => {
                                     onCardLike={handleCardLike}
                                     onCardDelete={handleCardDelete}
                     />
-                    <Route path='/sign-up'>
+                    <Route path='/signup'>
                         <Register onRegister={register}/>
                     </Route>
-                    <Route path='/sign-in'>
+                    <Route path='/signin'>
                         <Login onLogin={login} onChekToken={checkToken}/>
                     </Route>
                     <Route>
-                        {loggedIn ? <Redirect to='/'/> : <Redirect to='/sign-in'/>}
+                        {loggedIn ? <Redirect to='/'/> : <Redirect to='/sign in'/>}
                     </Route>
                 </Switch>
                 <Footer/>
