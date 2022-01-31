@@ -179,6 +179,7 @@ function signOut() {
 
 const checkToken = React.useCallback(() => {
   const token = localStorage.getItem('token');
+  console.log(token);
   auth.checkToken(token).then(
       (data) => {
           setLoggedIn(true);
@@ -189,14 +190,14 @@ const checkToken = React.useCallback(() => {
               console.log(err);
           }
       );
-}, []);
+}, [history]);
 
 React.useEffect(() => {
   const token = localStorage.getItem('token');
   if (token) {
       checkToken();
   }
-}, []);
+}, [checkToken]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
