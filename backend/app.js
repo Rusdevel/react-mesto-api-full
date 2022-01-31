@@ -10,11 +10,11 @@ const cardsRoute = require('./routes/cards');
 const NotFoundError = require('./errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const auth = require('./middlewares/auth');
-
+const cors = require('./middlewares/cors');
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
 const app = express();
-
+app.use(cors);
 // подключаемся к серверу mongo
 mongoose.connect('mongodb://localhost:27017/mestodb');
 app.use(bodyParser.json());
