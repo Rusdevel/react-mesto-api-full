@@ -1,6 +1,6 @@
 # Dependency directory
 node_modules
-.envgit
+.env
 # Logs
 logs
 *.log
