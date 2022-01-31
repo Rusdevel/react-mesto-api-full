@@ -92,10 +92,11 @@ class Api {
   // другие методы работы с API
 }
 const api = new Api({
-  url: `https://mesto.nomoreparties.co/v1/cohort-28`,
+  url: `https://api.mesto-application.nomoredomains.work`,
   headers: {
-    authorization: "f77a7956-a5a9-4ad6-a04a-920b557c7dfd",
-    "Content-Type": "application/json",
+   // authorization: "f77a7956-a5a9-4ad6-a04a-920b557c7dfd",
+   "Accept": "application/json",
+    "Content-Type": "application/json"
   },
 });
 export default api;
