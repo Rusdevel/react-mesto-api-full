@@ -38,7 +38,7 @@ app.post('/signup', celebrate({
 }), createUser);
 // авторизация
 app.use(auth);
-
+app.use(cors);
 app.use('/', usersRoute);
 app.use('/', cardsRoute);
 
