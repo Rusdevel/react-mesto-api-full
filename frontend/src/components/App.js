@@ -171,7 +171,7 @@ function App() {
 }
 
 function signOut() {
-  localStorage.removeItem("token");
+  localStorage.removeItem('token');
   setLoggedIn(false);
   history.push('signin');
 }
@@ -182,7 +182,7 @@ const checkToken = React.useCallback(() => {
   auth.checkToken(token).then(
       (data) => {
           setLoggedIn(true);
-          setUserEmail(data.data.email);
+          setUserEmail(data.email);
           history.push('/my-profile');
       })
       .catch((err) => {
@@ -222,7 +222,7 @@ React.useEffect(() => {
                         <Login onLogin={login} onChekToken={checkToken}/>
                     </Route>
                     <Route>
-                        {loggedIn ? <Redirect to='/'/> : <Redirect to='/sign in'/>}
+                        {loggedIn ? <Redirect to='/'/> : <Redirect to='/signin'/>}
                     </Route>
                 </Switch>
                 <Footer/>

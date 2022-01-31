@@ -9,7 +9,7 @@ class Api {
       headers: {
         'Accept': 'application/json',
         'Content-type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: token
     },
     }).then(this._checkRes);
   }
@@ -20,7 +20,7 @@ class Api {
       headers: {
         'Accept': 'application/json',
         'Content-type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: token
     },
     }).then(this._checkRes);
   }
@@ -32,7 +32,7 @@ class Api {
       headers: {
         'Accept': 'application/json',
         'Content-type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: token
     },
       body: JSON.stringify({
         name: data.name,
@@ -47,7 +47,7 @@ class Api {
       headers: {
         'Accept': 'application/json',
         'Content-type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: token
     },
       body: JSON.stringify({
         avatar: link.avatar,
@@ -61,7 +61,7 @@ class Api {
       headers: {
         'Accept': 'application/json',
         'Content-type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: token
     },
       body: JSON.stringify({
         name: data.name,
@@ -77,7 +77,7 @@ class Api {
       headers: {
         'Accept': 'application/json',
         'Content-type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: token
     },
     }).then(this._checkRes);
   }
@@ -88,7 +88,7 @@ class Api {
       headers: {
         'Accept': 'application/json',
         'Content-type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: token
     },
     }).then(this._checkRes);
   }
@@ -100,7 +100,7 @@ class Api {
       headers: {
         'Accept': 'application/json',
         'Content-type': 'application/json',
-        Authorization: `Bearer ${token}`
+        Authorization: token
     },
     }).then(this._checkRes);
   }
