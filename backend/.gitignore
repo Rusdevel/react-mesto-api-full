@@ -1,6 +1,6 @@
+.env
 # Dependency directory
 node_modules
-.env
 # Logs
 logs
 *.log
