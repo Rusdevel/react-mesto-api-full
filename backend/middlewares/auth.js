@@ -4,7 +4,7 @@ const AuthError = require('../errors/AuthError');
 module.exports = (req, res, next) => {
   // убеждаемся, что он есть
   if (!req.cookies.jwt) {
-    next(new AuthError('проверка'));
+    next(new AuthError('Ошибка авторизации'));
   }
   // извлечём токен и выкинем
   const token = req.cookies.jwt;
@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
     payload = jwt.verify(token, 'some-secret-key');
   } catch (err) {
     // отправим ошибку, если не получилось
-    next(new AuthError('Проверка'));
+    next(new AuthError('Ошибка авторизации'));
   }
 
   req.user = payload; // записываем пейлоуд в объект запроса

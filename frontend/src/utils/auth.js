@@ -1,15 +1,16 @@
-export const BASE_URL = 'https://auth.nomoreparties.co.'
+export const BASE_URL = 'api.mesto-application.nomoredomains.work';
 
 const checkRes = (res) => {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
 }
 
-export const register = (email, password) => {
+export const register = (email, password, token) => {
     return fetch(`${BASE_URL}/signup`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({email, password})
     }).then((res) => checkRes(res))

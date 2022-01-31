@@ -4,24 +4,39 @@ class Api {
     this._url = options.url;
   }
   // Получаем информацию о пользователе
-  getUserInfo() {
+  getUserInfo(token) {
     return fetch(`${this._url}/users/me`, {
-      headers: this._headers,
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`
+    },
+      Authorization: `Bearer ${token}`
     }).then(this._checkRes);
   }
 
   //Получил с сервера карточки
-  getInitialCards() {
+  getInitialCards(token) {
     return fetch(`${this._url}/cards`, {
-      headers: this._headers,
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`
+    },
+      Authorization: `Bearer ${token}`
     }).then(this._checkRes);
   }
 
   //отправляем измененные данные пользовотеля на сервер
-  editeUserDate(data) {
+  editeUserDate(data,token) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`
+    },
+      Authorization: `Bearer ${token}`,
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -29,20 +44,30 @@ class Api {
     }).then(this._checkRes);
   }
   //обновление аватарки
-  updateAvatar(link) {
+  updateAvatar(link,token) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`
+    },
+      Authorization: `Bearer ${token}`,
       body: JSON.stringify({
         avatar: link.avatar,
       }),
     }).then(this._checkRes);
   }
   //отправляем карточки
-  getNewCards(data) {
+  getNewCards(data,token) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`
+    },
+      Authorization: `Bearer ${token}`,
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -51,25 +76,39 @@ class Api {
   }
 
   //удаление карточки
-  cardDelete(cardId) {
+  cardDelete(cardId,token) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`
+    },
+      Authorization: `Bearer ${token}`,
     }).then(this._checkRes);
   }
   //настройка лайка
-  setLike(cardId) {
+  setLike(cardId,token) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: "PUT",
-      headers: this._headers,
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`
+    },
+      Authorization: `Bearer ${token}`
     }).then(this._checkRes);
   }
 
   //убрать лайк
-  removeLike(cardId) {
+  removeLike(cardId,token) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`
+    },
     }).then(this._checkRes);
   }
   //изменяем статус лайка

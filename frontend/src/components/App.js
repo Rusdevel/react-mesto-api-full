@@ -32,8 +32,8 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
-    api
-      .getUserInfo()
+    const token = localStorage.getItem('token');
+    api.getUserInfo(token)
       .then((userData) => {
         setCurrentUser(userData);
       })
@@ -42,8 +42,8 @@ function App() {
 
   //запрос карточек
   React.useEffect(() => {
-    api
-      .getInitialCards()
+    const token = localStorage.getItem('token');
+    api.getInitialCards(token)
       .then((data) => {
         setCards(data);
       })
@@ -77,8 +77,8 @@ function App() {
   }
   //обновляем профиль
   function handleUpdateUser(data) {
-    api
-      .editeUserDate(data)
+    const token = localStorage.getItem('token');
+    api.editeUserDate(data, token)
       .then((data) => {
         setCurrentUser(data);
         closeAllPopups();
@@ -89,8 +89,8 @@ function App() {
   }
   //обновляем аватар
   function handleUpdateAvatar(link) {
-    api
-      .updateAvatar(link)
+    const token = localStorage.getItem('token');
+    api.getUserInfo(link, token)
       .then((link) => {
         setCurrentUser(link);
         console.log(link);
@@ -103,8 +103,8 @@ function App() {
 
   //обновляем карточки
   function handleAddPlaceSubmit(data) {
-    api
-      .getNewCards(data)
+    const token = localStorage.getItem('token');
+    api.getUserInfo(data, token)
       .then((data) => {
         setCards([data, ...cards]);
         closeAllPopups();
@@ -120,7 +120,7 @@ function App() {
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
-      .changeLikeCardStatus(card._id, !isLiked)
+      .changeLikeCardStatus(card._id, !isLiked, localStorage.token)
       .then((newCard) => {
         setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
       })
@@ -131,8 +131,7 @@ function App() {
 
   //функция запроса удаления карточек
   function handleCardDelete(card) {
-    api
-      .cardDelete(card._id)
+    api.cardDelete(card._id,localStorage.token)
       .then(() => {
         setCards((state) => state.filter((c) => c !== card));
       })
@@ -174,7 +173,7 @@ function App() {
 function signOut() {
   localStorage.removeItem("token");
   setLoggedIn(false);
-  history.push('sign-in');
+  history.push('signin');
 }
 
 
