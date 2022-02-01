@@ -4,36 +4,24 @@ class Api {
     this._url = options.url;
   }
   // Получаем информацию о пользователе
-  getUserInfo(token) {
+  getUserInfo() {
     return fetch(`${this._url}/users/me`, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-        Authorization: console.log(token)
-    },
+      headers: this._headers,
     }).then(this._checkRes);
   }
 
   //Получил с сервера карточки
-  getInitialCards(token) {
+  getInitialCards() {
     return fetch(`${this._url}/cards`, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-        Authorization: token
-    },
+      headers: this._headers,
     }).then(this._checkRes);
   }
 
   //отправляем измененные данные пользовотеля на сервер
-  editeUserDate(data,token) {
+  editeUserDate(data) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-        Authorization: token
-    },
+      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -41,28 +29,20 @@ class Api {
     }).then(this._checkRes);
   }
   //обновление аватарки
-  updateAvatar(link,token) {
+  updateAvatar(link) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-        Authorization: token
-    },
+      headers: this._headers,
       body: JSON.stringify({
         avatar: link.avatar,
       }),
     }).then(this._checkRes);
   }
   //отправляем карточки
-  getNewCards(data,token) {
+  getNewCards(data) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-        Authorization: token
-    },
+      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -71,37 +51,25 @@ class Api {
   }
 
   //удаление карточки
-  cardDelete(cardId,token) {
+  cardDelete(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-        Authorization: token
-    },
+      headers: this._headers,
     }).then(this._checkRes);
   }
   //настройка лайка
-  setLike(cardId,token) {
+  setLike(cardId) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: "PUT",
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-        Authorization: token
-    },
+      headers: this._headers,
     }).then(this._checkRes);
   }
 
   //убрать лайк
-  removeLike(cardId,token) {
+  removeLike(cardId) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: "DELETE",
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-        Authorization: token
-    },
+      headers: this._headers,
     }).then(this._checkRes);
   }
   //изменяем статус лайка
@@ -126,9 +94,8 @@ class Api {
 const api = new Api({
   url: `https://api.mesto-application.nomoredomains.work`,
   headers: {
-   // authorization: "f77a7956-a5a9-4ad6-a04a-920b557c7dfd",
-   "Accept": "application/json",
-    "Content-Type": "application/json"
+    // authorization: "f77a7956-a5a9-4ad6-a04a-920b557c7dfd",
+    "Content-Type": "application/json",
   },
 });
 export default api;

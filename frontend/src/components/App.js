@@ -32,8 +32,8 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
-    const token = localStorage.getItem('token');
-    api.getUserInfo(token)
+    api
+      .getUserInfo()
       .then((userData) => {
         setCurrentUser(userData);
       })
@@ -42,8 +42,8 @@ function App() {
 
   //запрос карточек
   React.useEffect(() => {
-    const token = localStorage.getItem('token');
-    api.getInitialCards(token)
+    api
+      .getInitialCards()
       .then((data) => {
         setCards(data);
       })
@@ -77,8 +77,8 @@ function App() {
   }
   //обновляем профиль
   function handleUpdateUser(data) {
-    const token = localStorage.getItem('token');
-    api.editeUserDate(data, token)
+    api
+      .editeUserDate(data)
       .then((data) => {
         setCurrentUser(data);
         closeAllPopups();
@@ -89,8 +89,8 @@ function App() {
   }
   //обновляем аватар
   function handleUpdateAvatar(link) {
-    const token = localStorage.getItem('token');
-    api.getUserInfo(link, token)
+    api
+      .updateAvatar(link)
       .then((link) => {
         setCurrentUser(link);
         console.log(link);
@@ -103,8 +103,8 @@ function App() {
 
   //обновляем карточки
   function handleAddPlaceSubmit(data) {
-    const token = localStorage.getItem('token');
-    api.getUserInfo(data, token)
+    api
+      .getNewCards(data)
       .then((data) => {
         setCards([data, ...cards]);
         closeAllPopups();
@@ -120,7 +120,7 @@ function App() {
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
-      .changeLikeCardStatus(card._id, !isLiked, localStorage.token)
+      .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
       })
@@ -131,7 +131,8 @@ function App() {
 
   //функция запроса удаления карточек
   function handleCardDelete(card) {
-    api.cardDelete(card._id,localStorage.token)
+    api
+      .cardDelete(card._id)
       .then(() => {
         setCards((state) => state.filter((c) => c !== card));
       })
@@ -142,8 +143,7 @@ function App() {
 
   function register(email, password) {
     auth.register(email, password).then(
-        (data) => {
-          console.log(data)
+        () => {
             setIsSuccess(true)
             handleInfoTooltipPopupOpen()
             history.push('/');
@@ -159,7 +159,6 @@ function App() {
 
     auth.authorization(email, password).then(
         (data) => {
-          console.log(data);
             localStorage.setItem('token', data.token);
             setUserEmail(email)
             setLoggedIn(true)
@@ -173,69 +172,67 @@ function App() {
 }
 
 function signOut() {
-  localStorage.removeItem('token');
+  localStorage.removeItem("token");
   setLoggedIn(false);
-  history.push('signin');
+  history.push('sign-in');
 }
 
 
 const checkToken = React.useCallback(() => {
   const token = localStorage.getItem('token');
-  console.log(token);
   auth.checkToken(token).then(
       (data) => {
-        console.log(data);
           setLoggedIn(true);
-          setUserEmail(data.email);
+          setUserEmail(data.data.email);
           history.push('/my-profile');
       })
       .catch((err) => {
               console.log(err);
           }
       );
-}, [history]);
+}, []);
 
 React.useEffect(() => {
   const token = localStorage.getItem('token');
   if (token) {
       checkToken();
   }
-}, [checkToken]);
+}, []);
 
-return (
-  <CurrentUserContext.Provider value={currentUser}>
-          <div className="page">
-              <Header loggedIn={loggedIn} userEmail={userEmail} onSignOut={signOut}/>
-              <Switch>
-                 {/*<Route exact path='/'></Route>*/}
-                  <ProtectedRoute exact path='/'
-                                  component={Main}
-                                  loggedIn={loggedIn}
-                                  onEditProfile={handleEditProfileClick}
-                                  onAddPlace={handleAddPlaceClick}
-                                  onEditAvatar={handleEditAvatarClick}
-                                  onCardClick={handleCardClick}
-                                  cards={cards}
-                                  onCardLike={handleCardLike}
-                                  onCardDelete={handleCardDelete}
-                  />
-                  <Route path='/sign-up'>
-                      <Register onRegister={register}/>
-                  </Route>
-                  <Route path='/sign-in'>
-                      <Login onLogin={login} onChekToken={checkToken}/>
-                  </Route>
-                  <Route>
-                      {loggedIn ? <Redirect to='/'/> : <Redirect to='/sign-in'/>}
-                  </Route>
-              </Switch>
-              <Footer/>
-              <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
-      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
-      <ImagePopup card={selectedCard !== null && selectedCard} onClose={closeAllPopups} />
-      <InfoTooltip isOpen={isInfoTooltipPopupOpen}
-                           onClose={closeAllPopups} isSuccess={isSuccess}/>
+  return (
+    <CurrentUserContext.Provider value={currentUser}>
+            <div className="page">
+                <Header loggedIn={loggedIn} userEmail={userEmail} onSignOut={signOut}/>
+                <Switch>
+                   {/*<Route exact path='/'></Route>*/}
+                    <ProtectedRoute exact path='/'
+                                    component={Main}
+                                    loggedIn={loggedIn}
+                                    onEditProfile={handleEditProfileClick}
+                                    onAddPlace={handleAddPlaceClick}
+                                    onEditAvatar={handleEditAvatarClick}
+                                    onCardClick={handleCardClick}
+                                    cards={cards}
+                                    onCardLike={handleCardLike}
+                                    onCardDelete={handleCardDelete}
+                    />
+                    <Route path='/sign-up'>
+                        <Register onRegister={register}/>
+                    </Route>
+                    <Route path='/sign-in'>
+                        <Login onLogin={login} onChekToken={checkToken}/>
+                    </Route>
+                    <Route>
+                        {loggedIn ? <Redirect to='/'/> : <Redirect to='/sign-in'/>}
+                    </Route>
+                </Switch>
+                <Footer/>
+                <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+        <ImagePopup card={selectedCard !== null && selectedCard} onClose={closeAllPopups} />
+        <InfoTooltip isOpen={isInfoTooltipPopupOpen}
+                             onClose={closeAllPopups} isSuccess={isSuccess}/>
 
       {/*  <Main
           onEditProfile={handleEditProfileClick}

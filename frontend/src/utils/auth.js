@@ -1,31 +1,29 @@
-export const BASE_URL = 'api.mesto-application.nomoredomains.work';
+export const BASE_URL = 'https://api.mesto-application.nomoredomains.work'
 
 const checkRes = (res) => {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
 }
 
 export const register = (email, password) => {
-    return fetch('api.mesto-application.nomoredomains.work/signup', {
+    return fetch(`${BASE_URL}/signup`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({email, password})
-    }).then((res) => console.log(res) // checkRes(res)
-    )
+    }).then((res) => checkRes(res))
 }
 
-export const authorization = (email, password, token) => {
+export const authorization = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            authorization: console.log(token)
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({email, password})
-    }).then((res) => console.log(res))
+    }).then((res) => checkRes(res))
 }
 
 export const checkToken = (token) => {
@@ -34,8 +32,8 @@ export const checkToken = (token) => {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            Authorization: token
+            'Authorization': `Bearer ${token}`,
         },
 
-    }).then((res) => console.log(res))
+    }).then((res) => checkRes(res))
 }
