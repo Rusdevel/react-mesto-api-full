@@ -35,8 +35,10 @@ function App() {
     api
       .getUserInfo()
       .then((userData) => {
-        console.log(userData)
-        setCurrentUser(userData);
+        console.log({name: userData.name,
+          about: userData.about, avatar: userData.link })
+        setCurrentUser({name: userData.name,
+          about: userData.about, avatar: userData.link });
       })
       .catch((err) => console.log(err));
   }, []);
@@ -83,7 +85,8 @@ function App() {
       .then((data) => {
         console.log({name: data.name,
           about: data.about, });
-        setCurrentUser(data);
+        setCurrentUser({name: data.name,
+          about: data.about, });
         closeAllPopups();
       })
       .catch((err) => {
