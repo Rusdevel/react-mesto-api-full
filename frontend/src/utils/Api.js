@@ -2,7 +2,6 @@ class Api {
   constructor(options) {
     this._headers = options.headers;
     this._url = options.url;
-    console.log(this._headers);
   }
   // Получаем информацию о пользователе
   getUserInfo() {
@@ -92,11 +91,10 @@ class Api {
 
   // другие методы работы с API
 }
-
 const api = new Api({
   url: `https://api.mesto-application.nomoredomains.work`,
   headers: {
-     authorization: "token",
+     authorization: "f77a7956-a5a9-4ad6-a04a-920b557c7dfd",
     "Content-Type": "application/json",
   },
 });
