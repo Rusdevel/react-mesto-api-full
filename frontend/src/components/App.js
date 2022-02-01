@@ -142,7 +142,8 @@ function App() {
 
   function register(email, password) {
     auth.register(email, password).then(
-        () => {
+        (data) => {
+          console.log(data)
             setIsSuccess(true)
             handleInfoTooltipPopupOpen()
             history.push('/');
@@ -158,6 +159,7 @@ function App() {
 
     auth.authorization(email, password).then(
         (data) => {
+          console.log(data);
             localStorage.setItem('token', data.token);
             setUserEmail(email)
             setLoggedIn(true)
@@ -182,6 +184,7 @@ const checkToken = React.useCallback(() => {
   console.log(token);
   auth.checkToken(token).then(
       (data) => {
+        console.log(data);
           setLoggedIn(true);
           setUserEmail(data.email);
           history.push('/my-profile');

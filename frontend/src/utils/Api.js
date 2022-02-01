@@ -9,7 +9,7 @@ class Api {
       headers: {
         'Accept': 'application/json',
         'Content-type': 'application/json',
-        Authorization: token
+        Authorization: console.log(token)
     },
     }).then(this._checkRes);
   }

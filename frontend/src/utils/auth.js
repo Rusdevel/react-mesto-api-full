@@ -5,7 +5,7 @@ const checkRes = (res) => {
 }
 
 export const register = (email, password) => {
-    return fetch(`${BASE_URL}/signup`, {
+    return fetch('api.mesto-application.nomoredomains.work/signup', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -16,12 +16,13 @@ export const register = (email, password) => {
     )
 }
 
-export const authorization = (email, password) => {
+export const authorization = (email, password, token) => {
     return fetch(`${BASE_URL}/signin`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            authorization: console.log(token)
         },
         body: JSON.stringify({email, password})
     }).then((res) => console.log(res))
