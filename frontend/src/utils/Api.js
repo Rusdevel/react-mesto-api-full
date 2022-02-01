@@ -2,6 +2,7 @@ class Api {
   constructor(options) {
     this._headers = options.headers;
     this._url = options.url;
+    console.log(this._headers);
   }
   // Получаем информацию о пользователе
   getUserInfo() {
@@ -91,11 +92,11 @@ class Api {
 
   // другие методы работы с API
 }
-const token = localStorage.getItem('token');
+
 const api = new Api({
   url: `https://api.mesto-application.nomoredomains.work`,
   headers: {
-     authorization: `Bearer ${token}`,
+     authorization: "token",
     "Content-Type": "application/json",
   },
 });
