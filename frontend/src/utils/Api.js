@@ -7,6 +7,7 @@ class Api {
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       headers: this._headers,
+      credentials: "include",
     }).then(this._checkRes);
   }
 
@@ -14,6 +15,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       headers: this._headers,
+      credentials: "include",
     }).then(this._checkRes);
   }
 
@@ -21,6 +23,7 @@ class Api {
   editeUserDate(data) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -32,6 +35,7 @@ class Api {
   updateAvatar(link) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         avatar: link.avatar,
@@ -42,6 +46,7 @@ class Api {
   getNewCards(data) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
+      credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -54,6 +59,7 @@ class Api {
   cardDelete(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
+      credentials: "include",
       headers: this._headers,
     }).then(this._checkRes);
   }
@@ -61,6 +67,7 @@ class Api {
   setLike(cardId) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: "PUT",
+      credentials: "include",
       headers: this._headers,
     }).then(this._checkRes);
   }
@@ -69,6 +76,7 @@ class Api {
   removeLike(cardId) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
       method: "DELETE",
+      credentials: "include",
       headers: this._headers,
     }).then(this._checkRes);
   }
@@ -94,7 +102,6 @@ class Api {
 const api = new Api({
   url: `https://api.mesto-application.nomoredomains.work`,
   headers: {
-     authorization: "",
     "Content-Type": "application/json",
   },
 });

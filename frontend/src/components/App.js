@@ -159,7 +159,6 @@ function App() {
 
     auth.authorization(email, password).then(
         (data) => {
-            localStorage.setItem('token', data.token);
             setUserEmail(email)
             setLoggedIn(true)
             history.push("/my-profile");
@@ -172,15 +171,13 @@ function App() {
 }
 
 function signOut() {
-  localStorage.removeItem("token");
   setLoggedIn(false);
-  history.push('sign-in');
+  history.push('/sign-in');
 }
 
 
 const checkToken = React.useCallback(() => {
-  const token = localStorage.getItem('token');
-  auth.checkToken(token).then(
+  auth.checkToken().then(
       (data) => {
           setLoggedIn(true);
           setUserEmail(data.data.email);
@@ -190,14 +187,11 @@ const checkToken = React.useCallback(() => {
               console.log(err);
           }
       );
-}, []);
+}, [history]);
 
-React.useEffect(() => {
-  const token = localStorage.getItem('token');
-  if (token) {
+React.useEffect(() => { 
       checkToken();
-  }
-}, []);
+}, [checkToken]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
