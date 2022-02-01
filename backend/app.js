@@ -13,13 +13,31 @@ const NotFoundError = require('./errors/NotFoundError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const auth = require('./middlewares/auth');
 
+const corsAllowed = [
+  'https://mesto-application.front.nomoredomains.work',
+  'https://api.mesto-application.nomoredomains.work',
+  'https://localhost:3000',
+  'http://localhost:3001',
+];
+
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
 const app = express();
 
 // подключаемся к серверу mongo
 mongoose.connect('mongodb://localhost:27017/mestodb');
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin(origin, callback) {
+      if (corsAllowed.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+  }),
+);
 app.options('*', cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
