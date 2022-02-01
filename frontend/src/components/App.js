@@ -81,7 +81,8 @@ function App() {
     api
       .editeUserDate(data)
       .then((data) => {
-        console.log(data);
+        console.log({name: data.name,
+          about: data.about, });
         setCurrentUser(data);
         closeAllPopups();
       })
@@ -94,8 +95,8 @@ function App() {
     api
       .updateAvatar(link)
       .then((link) => {
-        console.log(link);
-        setCurrentUser(link);
+        console.log(link.link);
+        setCurrentUser(link.link);
         console.log(link);
         closeAllPopups();
       })
