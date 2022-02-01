@@ -38,9 +38,9 @@ function App() {
       Promise.all(promises)
         .then(([userData, initialCards]) => {
           console.log(userData.name, userData.about, userData.avatar);
-          console.log(userData.data.name, userData.data.about);
+          console.log(userData.data.name, userData.data.about, userData.data.avatar);
           console.log(userData);
-          setCurrentUser(userData);
+          setCurrentUser(userData.data.name, userData.data.about, userData.data.avatar);
           setCards(initialCards);
         })
         .catch((result) => console.log(`${result} при загрузке данных`));
