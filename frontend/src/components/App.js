@@ -33,7 +33,7 @@ function App() {
 
   React.useEffect(() => {
     if (loggedIn) {
-      const promises = [api.getUserData(), api.getInitialCards()];
+      const promises = [api.getUserInfo(), api.getInitialCards()];
 
       Promise.all(promises)
         .then(([userData, initialCards]) => {
