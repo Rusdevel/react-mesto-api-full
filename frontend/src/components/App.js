@@ -171,6 +171,9 @@ function App() {
             setUserEmail(email)
             setLoggedIn(true)
             history.push("/my-profile");
+            console.log(currentUser(data))
+            currentUser(data);
+
         })
         .catch((err) => {
             console.log(err)
