@@ -37,7 +37,7 @@ function App() {
 
       Promise.all(promises)
         .then(([userData, initialCards]) => {
-          console.log(userData.name, userData.about, userData.avatar);
+          // console.log(userData.name, userData.about, userData.avatar);
           console.log(userData.data.name, userData.data.about, userData.data.avatar);
           console.log(userData);
           setCurrentUser(userData.data.name, userData.data.about, userData.data.avatar);
@@ -88,7 +88,8 @@ function App() {
       .editeUserDate(name, about)
       .then((data) => {
         console.log(data);
-        setCurrentUser(data);
+        console.log(data.name, data.about);
+        setCurrentUser(data.name, data.about);
         closeAllPopups();
       })
       .catch((err) => {
