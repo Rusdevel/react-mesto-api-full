@@ -199,40 +199,40 @@ React.useEffect(() => {
   }
 }, [checkToken]);
 
-  return (
-    <CurrentUserContext.Provider value={currentUser}>
-            <div className="page">
-                <Header loggedIn={loggedIn} userEmail={userEmail} onSignOut={signOut}/>
-                <Switch>
-                   {<Route exact path='/'></Route>}
-                    <ProtectedRoute exact path='/'
-                                    component={Main}
-                                    loggedIn={loggedIn}
-                                    onEditProfile={handleEditProfileClick}
-                                    onAddPlace={handleAddPlaceClick}
-                                    onEditAvatar={handleEditAvatarClick}
-                                    onCardClick={handleCardClick}
-                                    cards={cards}
-                                    onCardLike={handleCardLike}
-                                    onCardDelete={handleCardDelete}
-                    />
-                    <Route path='/signup'>
-                        <Register onRegister={register}/>
-                    </Route>
-                    <Route path='/signin'>
-                        <Login onLogin={login} onChekToken={checkToken}/>
-                    </Route>
-                    <Route>
-                        {loggedIn ? <Redirect to='/'/> : <Redirect to='/signin'/>}
-                    </Route>
-                </Switch>
-                <Footer/>
-                <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
-        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
-        <ImagePopup card={selectedCard !== null && selectedCard} onClose={closeAllPopups} />
-        <InfoTooltip isOpen={isInfoTooltipPopupOpen}
-                             onClose={closeAllPopups} isSuccess={isSuccess}/>
+return (
+  <CurrentUserContext.Provider value={currentUser}>
+          <div className="page">
+              <Header loggedIn={loggedIn} userEmail={userEmail} onSignOut={signOut}/>
+              <Switch>
+                 {/*<Route exact path='/'></Route>*/}
+                  <ProtectedRoute exact path='/'
+                                  component={Main}
+                                  loggedIn={loggedIn}
+                                  onEditProfile={handleEditProfileClick}
+                                  onAddPlace={handleAddPlaceClick}
+                                  onEditAvatar={handleEditAvatarClick}
+                                  onCardClick={handleCardClick}
+                                  cards={cards}
+                                  onCardLike={handleCardLike}
+                                  onCardDelete={handleCardDelete}
+                  />
+                  <Route path='/sign-up'>
+                      <Register onRegister={register}/>
+                  </Route>
+                  <Route path='/sign-in'>
+                      <Login onLogin={login} onChekToken={checkToken}/>
+                  </Route>
+                  <Route>
+                      {loggedIn ? <Redirect to='/'/> : <Redirect to='/sign-in'/>}
+                  </Route>
+              </Switch>
+              <Footer/>
+              <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+      <ImagePopup card={selectedCard !== null && selectedCard} onClose={closeAllPopups} />
+      <InfoTooltip isOpen={isInfoTooltipPopupOpen}
+                           onClose={closeAllPopups} isSuccess={isSuccess}/>
 
       {/*  <Main
           onEditProfile={handleEditProfileClick}
