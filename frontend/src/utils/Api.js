@@ -55,6 +55,9 @@ class Api {
     }).then(this._checkRes);
   }
 
+
+
+  
   //удаление карточки
   cardDelete(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
@@ -63,6 +66,7 @@ class Api {
       headers: this._headers,
     }).then(this._checkRes);
   }
+/*
   //настройка лайка
   setLike(cardId) {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
@@ -79,15 +83,17 @@ class Api {
       credentials: "include",
       headers: this._headers,
     }).then(this._checkRes);
-  }
+  }*/
   //изменяем статус лайка
-  changeLikeCardStatus(id, isLiked) {
-    if (isLiked) {
-      return this.setLike(id);
-    } else {
-      return this.removeLike(id);
-    }
+  changeLikeCardStatus(cardId, isLiked) {
+    return fetch(`${this._address}/cards/likes/${cardId}`, {
+      method: isLiked ? 'PUT' : 'DELETE',
+      headers: this._headers,
+      credentials: 'include',
+    }).then((result) => this._checkRes(result));
   }
+
+
 
   // проверяем приняли ли запрос
   _checkRes(res) {
