@@ -9,15 +9,15 @@ function Main(props) {
     <main className="content">
       <section className="section profile">
         <div className="profile__avatar-block">
-          <img className="profile__avatar" src={console.log({сurrentUser})} alt="Аватар" />
+          <img className="profile__avatar" src={сurrentUser.avatar} alt="Аватар" />
           <div onClick={props.onEditAvatar} className="profile__avatar-button"></div>
         </div>
 
         <div className="profile__section">
           <div className="profile__date">
-            <h1 className="profile__name">{console.log(сurrentUser)}</h1>
+            <h1 className="profile__name">{сurrentUser.name}</h1>
             <button onClick={props.onEditProfile} type="button" className="button profile__button"></button>
-            <p className="profile__job">{console.log(сurrentUser.about)}</p>
+            <p className="profile__job">{сurrentUser.about}</p>
           </div>
           <button onClick={props.onAddPlace} type="button" className="button profile__edit-button"></button>
         </div>
