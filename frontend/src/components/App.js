@@ -204,7 +204,7 @@ React.useEffect(() => {
             <div className="page">
                 <Header loggedIn={loggedIn} userEmail={userEmail} onSignOut={signOut}/>
                 <Switch>
-                   {/*<Route exact path='/'></Route>*/}
+                   {<Route exact path='/'></Route>}
                     <ProtectedRoute exact path='/'
                                     component={Main}
                                     loggedIn={loggedIn}
