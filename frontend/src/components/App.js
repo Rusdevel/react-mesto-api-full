@@ -32,17 +32,18 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((userData) => {
-        console.log({name: userData.name,
-          about: userData.about, avatar: userData.link })
-        setCurrentUser({name: userData.name,
-          about: userData.about, avatar: userData.link });
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (loggedIn) {
+      const promises = [api.getUserData(), api.getInitialCards()];
 
+      Promise.all(promises)
+        .then(([userData, initialCards]) => {
+          setCurrentUser(userData);
+          setCards(initialCards);
+        })
+        .catch((result) => console.log(`${result} при загрузке данных`));
+    }
+  }, [loggedIn]);
+/*
   //запрос карточек
   React.useEffect(() => {
     api
@@ -51,7 +52,7 @@ function App() {
         setCards(data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, []); */
 
   function handleCardClick(card) {
     setSelectedCard(card);
@@ -79,14 +80,12 @@ function App() {
     setIsInfoTooltipPopupOpen(false)
   }
   //обновляем профиль
-  function handleUpdateUser(data) {
+  function handleUpdateUser({name, about}) {
     api
-      .editeUserDate(data)
+      .editeUserDate(name, about)
       .then((data) => {
-        console.log({name: data.name,
-          about: data.about, });
-        setCurrentUser({name: data.name,
-          about: data.about, });
+        console.log(data);
+        setCurrentUser(data);
         closeAllPopups();
       })
       .catch((err) => {

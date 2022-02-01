@@ -20,14 +20,14 @@ class Api {
   }
 
   //отправляем измененные данные пользовотеля на сервер
-  editeUserDate(data) {
+  editeUserDate(name, about) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
-        name: data.name,
-        about: data.about,
+        name: name,
+        about:about,
       }),
     }).then(this._checkRes);
   }
