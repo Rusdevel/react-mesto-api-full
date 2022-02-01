@@ -8,7 +8,7 @@ class Api {
     return fetch(`${this._url}/users/me`, {
       headers: this._headers,
       credentials: "include",
-    }).then(this._checkRes);
+    }).then(console.log());
   }
 
   //Получил с сервера карточки
@@ -38,7 +38,7 @@ class Api {
       credentials: "include",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: link.avatar,
+        avatar: link.link,
       }),
     }).then(this._checkRes);
   }
