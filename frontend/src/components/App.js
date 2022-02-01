@@ -35,6 +35,7 @@ function App() {
     api
       .getUserInfo()
       .then((userData) => {
+        console.log(userData)
         setCurrentUser(userData);
       })
       .catch((err) => console.log(err));
@@ -80,6 +81,7 @@ function App() {
     api
       .editeUserDate(data)
       .then((data) => {
+        console.log(data);
         setCurrentUser(data);
         closeAllPopups();
       })
@@ -92,6 +94,7 @@ function App() {
     api
       .updateAvatar(link)
       .then((link) => {
+        console.log(link);
         setCurrentUser(link);
         console.log(link);
         closeAllPopups();
