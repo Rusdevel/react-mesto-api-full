@@ -15,7 +15,7 @@ function Main(props) {
 
         <div className="profile__section">
           <div className="profile__date">
-            <h1 className="profile__name">{сurrentUser.name}</h1>
+            <h1 className="profile__name">{сurrentUser}</h1>
             <button onClick={props.onEditProfile} type="button" className="button profile__button"></button>
             <p className="profile__job">{сurrentUser.about}</p>
           </div>

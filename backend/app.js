@@ -63,11 +63,11 @@ app.use(auth);
 app.use('/', usersRoute);
 app.use('/', cardsRoute);
 
-app.use(errorLogger); // подключаем логгер ошибок
-
 app.all('*', (req, res, next) => {
   next(new NotFoundError('ресурс не найден.'));
 });
+
+app.use(errorLogger); // подключаем логгер ошибок
 
 app.use(errors());
 
