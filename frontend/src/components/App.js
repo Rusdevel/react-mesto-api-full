@@ -39,7 +39,6 @@ function App() {
         .then(([userData, initialCards]) => {
           // console.log(userData.name, userData.about, userData.avatar);
           console.log(userData.data.name, userData.data.about, userData.data.avatar);
-          console.log(userData);
           setCurrentUser(userData.data.name, userData.data.about, userData.data.avatar);
           setCards(initialCards);
         })
@@ -172,9 +171,6 @@ function App() {
             setUserEmail(email)
             setLoggedIn(true)
             history.push("/my-profile");
-           // console.log(currentUser(data))
-             // currentUser(data);
-
         })
         .catch((err) => {
             console.log(err)
