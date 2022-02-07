@@ -9,7 +9,7 @@ function Main(props) {
     <main className="content">
       <section className="section profile">
         <div className="profile__avatar-block">
-          <img className="profile__avatar" src={сurrentUser} alt="Аватар" />
+          <img className="profile__avatar" src={console.log(сurrentUser)} alt="Аватар" />
           <div onClick={props.onEditAvatar} className="profile__avatar-button"></div>
         </div>
 

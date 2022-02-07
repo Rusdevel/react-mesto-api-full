@@ -87,8 +87,9 @@ function App() {
       .editeUserDate(name, about)
       .then((data) => {
         console.log(data);
+        console.log(data.data.name, data.data.about);
         console.log(data.name, data.about);
-        setCurrentUser(data.name, data.about);
+        // setCurrentUser(data.name, data.about);
         closeAllPopups();
       })
       .catch((err) => {
@@ -101,7 +102,7 @@ function App() {
       .updateAvatar(link)
       .then((link) => {
         console.log(link.link);
-        setCurrentUser(link.link);
+       // setCurrentUser(link.link);
         console.log(link);
         closeAllPopups();
       })
