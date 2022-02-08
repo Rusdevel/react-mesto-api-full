@@ -190,8 +190,10 @@ const checkToken = React.useCallback(() => {
   auth.checkToken().then(
       (data) => {
           setLoggedIn(true);
-          setUserEmail(data.data.email);
-          history.push('/my-profile');
+          console.log(data.data.email);
+          console.log(data.email);
+           setUserEmail(data.data.email);
+          history.push('/');
       })
       .catch((err) => {
               console.log(err);
