@@ -193,7 +193,7 @@ const checkToken = React.useCallback(() => {
           console.log(data.data.email);
           console.log(data.email);
            setUserEmail(data.data.email);
-          history.push('/');
+          history.push('/my-profile');
       })
       .catch((err) => {
               console.log(err);
