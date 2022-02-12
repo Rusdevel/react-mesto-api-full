@@ -16,7 +16,7 @@ const auth = require('./middlewares/auth');
 const corsAllowed = [
   'https://mesto-application.front.nomoredomains.work',
   'https://api.mesto-application.nomoredomains.work',
-  'https://localhost:3000',
+  'http://localhost:3000',
   'http://localhost:3001',
 ];
 

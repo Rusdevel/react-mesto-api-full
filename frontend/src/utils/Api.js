@@ -66,10 +66,10 @@ class Api {
       headers: this._headers,
     }).then(this._checkRes);
   }
-/*
+
   //настройка лайка
   setLike(cardId) {
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "PUT",
       credentials: "include",
       headers: this._headers,
@@ -78,15 +78,15 @@ class Api {
 
   //убрать лайк
   removeLike(cardId) {
-    return fetch(`${this._url}/cards/likes/${cardId}`, {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "DELETE",
       credentials: "include",
       headers: this._headers,
     }).then(this._checkRes);
-  }*/
+  }
   //изменяем статус лайка
   changeLikeCardStatus(cardId, isLiked) {
-    return fetch(`${this._address}/cards/likes/${cardId}`, {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: isLiked ? 'PUT' : 'DELETE',
       headers: this._headers,
       credentials: 'include',

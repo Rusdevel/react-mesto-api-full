@@ -39,7 +39,7 @@ function App() {
         .then(([userData, initialCards]) => {
           // console.log(userData.name, userData.about, userData.avatar);
           console.log(userData.data.name, userData.data.about, userData.data.avatar);
-          setCurrentUser(userData.data.name, userData.data.about, userData.data.avatar);
+          setCurrentUser({name: userData.data.name, about: userData.data.about, avatar: userData.data.avatar});
           setCards(initialCards);
         })
         .catch((result) => console.log(`${result} при загрузке данных`));
@@ -87,9 +87,8 @@ function App() {
       .editeUserDate(name, about)
       .then((data) => {
         console.log(data);
-        console.log(data.data.name, data.data.about);
-        console.log(data.name, data.about);
-        // setCurrentUser(data.name, data.about);
+        setCurrentUser({...currentUser, name: data.name, about: data.about});
+
         closeAllPopups();
       })
       .catch((err) => {
@@ -101,9 +100,7 @@ function App() {
     api
       .updateAvatar(link)
       .then((link) => {
-        console.log(link.link);
-       // setCurrentUser(link.link);
-        console.log(link);
+        setCurrentUser({...currentUser, avatar: link.avatar});
         closeAllPopups();
       })
       .catch((err) => {
@@ -165,7 +162,7 @@ function App() {
         })
 }
   
-  function login(email, password) {
+function login(email, password) {
 
     auth.authorization(email, password).then(
         (data) => {
@@ -192,7 +189,7 @@ const checkToken = React.useCallback(() => {
           setLoggedIn(true);
           console.log(data.data.email);
           console.log(data.email);
-           setUserEmail(data.data.email);
+          setUserEmail(data.data.email);
           history.push('/my-profile');
       })
       .catch((err) => {
