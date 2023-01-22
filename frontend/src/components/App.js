@@ -43,7 +43,7 @@ function App() {
           setCards(initialCards);
         })
         .catch((result) => console.log(`${result} при загрузке данных`));
-    }
+    } else <Redirect to='/'/>
   }, [loggedIn]);
 /*
   //запрос карточек

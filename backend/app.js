@@ -18,6 +18,7 @@ const corsAllowed = [
   'https://api.mesto-application.nomoredomains.work',
   'http://localhost:3000',
   'http://localhost:3001',
+  'http://51.250.96.193',
 ];
 
 // Слушаем 3000 порт

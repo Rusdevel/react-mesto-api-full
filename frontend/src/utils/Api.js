@@ -106,7 +106,7 @@ class Api {
   // другие методы работы с API
 }
 const api = new Api({
-  url: `https://api.mesto-application.nomoredomains.work`,
+  url: `http://51.250.96.193`,
   headers: {
     "Content-Type": "application/json",
   },
